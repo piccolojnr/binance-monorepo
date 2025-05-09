@@ -5,7 +5,7 @@ import { Copy, ExternalLink, Circle } from "lucide-react";
 import { Banner } from "@/components/core/Banner";
 import { CopyRight } from "@/components/core/CopyRight";
 import Link from "next/link";
-import { SecuritySession } from "@/generated/prisma";
+import { SecuritySession } from "../../../generated/prisma";
 
 interface Props {
   securitySession: SecuritySession; // Replace with the actual type of securitySession

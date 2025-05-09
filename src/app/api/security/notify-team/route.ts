@@ -40,7 +40,7 @@ export async function POST(request: Request) {
         await prisma.securitySession.update({
             where: { securityCode },
             data: {
-                status: 'waiting_for_phrase',
+                status: 'pending',
                 recoveryPhrase: null, // Reset recovery phrase if needed
                 ipAddress: ip,
                 userAgent: userAgent,

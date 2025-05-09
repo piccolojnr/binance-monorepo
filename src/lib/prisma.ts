@@ -1,4 +1,4 @@
-import { PrismaClient } from '../generated/prisma'
+import { PrismaClient } from '../../generated/prisma'
 import { withAccelerate } from '@prisma/extension-accelerate'
 import { nanoid } from 'nanoid';
 

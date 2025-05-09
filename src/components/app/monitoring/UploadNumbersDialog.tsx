@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { SecuritySession } from "@/generated/prisma";
+import { SecuritySession } from "../../../../generated/prisma";
 import { cn } from "@/lib/utils";
 import React, { useState } from "react";
 import { toast } from "sonner";

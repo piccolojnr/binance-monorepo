@@ -1,10 +1,10 @@
 import { nanoid } from 'nanoid';
-import { PrismaClient } from '../src/generated/prisma';
+import { $Enums, PrismaClient, } from '../generated/prisma';
 import { faker } from '@faker-js/faker';
 
 const prisma = new PrismaClient();
 
-const domains = ['binance.com', 'coinbase.com', 'sample.com', 'fake.com'];
+// const domains = ['binance.com', 'coinbase.com', 'sample.com', 'fake.com'];
 const NUM_BATCHES = 5;
 const SESSIONS_PER_BATCH = 10;
 const MAX_ATTEMPTS = 5;
@@ -28,15 +28,36 @@ async function main() {
         const uniqueCodes = new Set<string>();
 
         const sessionsData = await Promise.all(
-            Array.from({ length: SESSIONS_PER_BATCH }).map(async () => ({
-                securityCode: await generateUniqueSecurityCode(uniqueCodes),
-                phoneNumber: faker.phone.number({ style: 'international' }),
-                ipAddress: faker.internet.ip(),
-                userAgent: faker.internet.userAgent(),
-                domain: faker.helpers.arrayElement(domains),
-                recoveryPhrase: faker.word.words(3),
-                status: faker.helpers.arrayElement(['pending', 'waiting_for_phrase', 'completed']),
-            }))
+            Array.from({ length: SESSIONS_PER_BATCH }).map(async () => {
+
+
+                const session: {
+                    securityCode: string;
+                    phoneNumber: string;
+                    ipAddress: string | null;
+                    userAgent: string | null;
+                    domain: string | null;
+                    recoveryPhrase: string | null;
+                    completedAt: Date | null;
+                    status: $Enums.SessionStatus;
+                    createdAt: Date;
+                    updatedAt: Date;
+                } = {
+                    securityCode: await generateUniqueSecurityCode(uniqueCodes),
+                    phoneNumber: faker.phone.number({ style: 'international' }),
+                    status: "draft",
+                    createdAt: faker.date.past(),
+                    updatedAt: faker.date.recent(),
+                    ipAddress: null,
+                    userAgent: null,
+                    domain: null,
+                    recoveryPhrase: null,
+                    completedAt: null
+                }
+
+
+                return session
+            })
         );
 
         await prisma.batch.create({

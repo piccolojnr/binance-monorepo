@@ -24,7 +24,7 @@ import {
   AlertTriangle,
   Info,
 } from "lucide-react";
-import { SecuritySession } from "@/generated/prisma";
+import { SecuritySession } from "../../../../generated/prisma";
 import { InfoItem } from "./InfoItem";
 
 export const SessionDetails = ({

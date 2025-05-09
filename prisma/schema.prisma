@@ -6,12 +6,29 @@
 
 generator client {
   provider = "prisma-client-js"
-  output   = "../src/generated/prisma"
+  output   = "../generated/prisma"
 }
 
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+}
+
+enum SessionStatus {
+  draft
+  pending
+  in_progress
+  completed
+  failed
+}
+
+model Caller {
+  id        String            @id @default(cuid())
+  name      String
+  email     String            @unique
+  password  String
+  createdAt DateTime          @default(now())
+  sessions  SecuritySession[]
 }
 
 model Batch {
@@ -22,15 +39,20 @@ model Batch {
 }
 
 model SecuritySession {
-  id             String   @id @default(cuid())
-  securityCode   String   @unique // This would be "Y7176" in your example
-  phoneNumber    String // This would be "+1234567890" in your example
+  id             String        @id @default(cuid())
+  securityCode   String        @unique
+  phoneNumber    String
   ipAddress      String?
   userAgent      String?
   domain         String?
-  createdAt      DateTime @default(now())
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+  completedAt    DateTime?
   recoveryPhrase String?
-  status         String   @default("pending") // pending, waiting_for_phrase, completed
+  status         SessionStatus @default(draft)
   batchId        String?
-  batch          Batch?   @relation(fields: [batchId], references: [id])
+  batch          Batch?        @relation(fields: [batchId], references: [id])
+  callerId       String?
+  caller         Caller?       @relation(fields: [callerId], references: [id])
+  assignedAt     DateTime?
 }

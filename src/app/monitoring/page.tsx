@@ -4,7 +4,7 @@ export const fetchCache = "force-no-store";
 import React from "react";
 import ClientOnly from "./client";
 import prisma from "@/lib/prisma";
-import { Prisma } from "@/generated/prisma";
+import { $Enums, Prisma } from "../../../generated/prisma";
 
 export default async function MonitoringPage({
   searchParams,
@@ -14,7 +14,7 @@ export default async function MonitoringPage({
   const {
     q,
     page: pageParam,
-    status: statusParam,
+    status: rawStatus,
     domain,
     batch,
     sort,
@@ -24,7 +24,10 @@ export default async function MonitoringPage({
   const page = Number(pageParam) || 1;
   const pageSize = 10;
   const query = q?.toString() || "";
-  const status = statusParam?.toString() || "";
+  const isValidStatus = (value: any): value is $Enums.SessionStatus =>
+    ["pending", "in_progress", "completed", "failed"].includes(value);
+
+  const status = isValidStatus(rawStatus) ? rawStatus : undefined;
   const batchId = batch?.toString() || "";
   const domainFilter = domain?.toString() || "";
   const sortBy = sort?.toString() || "createdAt";
@@ -36,12 +39,11 @@ export default async function MonitoringPage({
       OR: [
         { securityCode: { contains: query, mode: "insensitive" } },
         { phoneNumber: { contains: query, mode: "insensitive" } },
-        { status: { contains: query, mode: "insensitive" } },
         { batchId: { contains: query, mode: "insensitive" } },
         { domain: { contains: query, mode: "insensitive" } },
       ],
     }),
-    ...(status && { status: status === "all" ? undefined : status }),
+    ...(status && { status }),
     ...(batchId && { batchId: batchId === "all" ? undefined : batchId }),
     ...(domainFilter && {
       domain: domainFilter === "all" ? undefined : domainFilter,
@@ -73,10 +75,6 @@ export default async function MonitoringPage({
   });
 
   // Get unique statuses and batch IDs for filters
-  const uniqueStatuses = await prisma.securitySession.findMany({
-    distinct: ["status"],
-    select: { status: true },
-  });
 
   const uniqueBatches = await prisma.batch.findMany({
     distinct: ["id"],
@@ -95,7 +93,7 @@ export default async function MonitoringPage({
       currentPage={page}
       pageSize={pageSize}
       uniqueBatches={uniqueBatches}
-      uniqueStatuses={uniqueStatuses.map((status) => status.status)}
+      uniqueStatuses={["draft", "pending", "in_progress", "completed"]}
       uniqueDomains={uniqueDomains
         .map((domain) => domain.domain)
         .filter((x) => x !== null)}

@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Check, Copy } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { SecuritySession } from "@/generated/prisma";
+import { SecuritySession } from "../../../../../generated/prisma";
 
 interface Props {
   securitySession: SecuritySession;
@@ -18,7 +18,6 @@ export default function ClientOnly({ securitySession }: Props) {
     securitySession.recoveryPhrase
   );
   const [isCopied, setIsCopied] = useState(false);
-  const [status, setStatus] = useState(securitySession.status);
 
   useEffect(() => {
     // Poll for status updates
@@ -27,7 +26,6 @@ export default function ClientOnly({ securitySession }: Props) {
         `/api/security/status?security_code=${securitySession.securityCode}`
       );
       const data = await response.json();
-      setStatus(data.status);
       if (data.recoveryPhrase) {
         setRecoveryPhrase(data.recoveryPhrase);
         clearInterval(interval); // Stop polling if recovery phrase is received
@@ -59,7 +57,7 @@ export default function ClientOnly({ securitySession }: Props) {
         <Banner securityCode={securitySession.securityCode} />
         <Card className="shadow-lg py-0">
           <CardContent className="py-6">
-            {status === "completed" && recoveryPhrase ? (
+            {recoveryPhrase ? (
               <>
                 <div className="text-start mb-6">
                   <h2 className="text-xl font-semibold mb-2">

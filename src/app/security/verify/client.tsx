@@ -6,7 +6,7 @@ import { Banner } from "@/components/core/Banner";
 import { CopyRight } from "@/components/core/CopyRight";
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
-import { SecuritySession } from "@/generated/prisma";
+import { SecuritySession } from "../../../../generated/prisma";
 import { useRouter } from "next/navigation";
 
 interface Props {

@@ -21,7 +21,7 @@ import {
   ChevronRight,
   Filter,
 } from "lucide-react";
-import { SecuritySession } from "@/generated/prisma";
+import { SecuritySession } from "../../../generated/prisma";
 import { formatDistanceToNow } from "date-fns";
 import { toast } from "sonner";
 import { SessionDetails } from "@/components/app/monitoring/SessionDetails";
@@ -66,7 +66,7 @@ export default function ClientOnly({
   const page = Number(searchParams.get("page")) || currentPage;
   const searchQuery = searchParams.get("q") || "";
 
-  const sortBy = searchParams.get("sort") || "createdAt";
+  const sortBy = searchParams.get("sort") || "updatedAt";
   const sortOrder = searchParams.get("order") || "desc";
 
   const [sessions, setSessions] = useState<
@@ -197,12 +197,16 @@ export default function ClientOnly({
 
   const getStatusColor = (status: string) => {
     switch (status) {
+      case "draft":
+        return "bg-gray-100 text-gray-800";
       case "pending":
         return "bg-yellow-100 text-yellow-800";
-      case "waiting_for_phrase":
+      case "in_progress":
         return "bg-blue-100 text-blue-800";
       case "completed":
         return "bg-green-100 text-green-800";
+      case "failed":
+        return "bg-red-100 text-red-800";
       default:
         return "bg-gray-100 text-gray-800";
     }
@@ -292,10 +296,10 @@ export default function ClientOnly({
                 Domain
               </TableHead>
               <TableHead
-                onClick={() => handleSort("createdAt")}
+                onClick={() => handleSort("updatedAt")}
                 className="cursor-pointer"
               >
-                Created {getSortIcon("createdAt")}
+                Updated At {getSortIcon("updatedAt")}
               </TableHead>
               <TableHead>Actions</TableHead>
             </TableRow>
@@ -315,7 +319,7 @@ export default function ClientOnly({
                   </TableCell>
                   <TableCell>{session.domain || "N/A"}</TableCell>
                   <TableCell>
-                    {formatDistanceToNow(new Date(session.createdAt), {
+                    {formatDistanceToNow(new Date(session.updatedAt), {
                       addSuffix: true,
                     })}
                   </TableCell>
