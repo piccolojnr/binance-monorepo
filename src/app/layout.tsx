@@ -27,6 +27,24 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        {/* header bar with on logo */}
+        <header className="bg-white py-6 px-4 border-b">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-yellow-500 font-bold text-xl flex items-center">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                className="mr-2"
+              >
+                <path d="M12 2L4 6.5V17.5L12 22L20 17.5V6.5L12 2ZM16.5 15.5L12 18.5L7.5 15.5V8.5L12 5.5L16.5 8.5V15.5Z" />
+                <path d="M12 11L9 9.5V12.5L12 14L15 12.5V9.5L12 11Z" />
+              </svg>
+              BINANCE
+            </div>
+          </div>
+        </header>
         {children}
       </body>
     </html>
