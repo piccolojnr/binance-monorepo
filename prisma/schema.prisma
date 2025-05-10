@@ -22,13 +22,20 @@ enum SessionStatus {
   failed
 }
 
-model Caller {
-  id        String            @id @default(cuid())
+model User {
+  id        String   @id @default(cuid())
   name      String
-  email     String            @unique
+  email     String   @unique
   password  String
-  createdAt DateTime          @default(now())
-  sessions  SecuritySession[]
+  balance   Int      @default(0)
+  admin     Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  parentId String?
+  parent   User?   @relation("UserToChildren", fields: [parentId], references: [id])
+  children User[]  @relation("UserToChildren")
+
+  sessions SecuritySession[]
 }
 
 model Batch {
@@ -53,6 +60,6 @@ model SecuritySession {
   batchId        String?
   batch          Batch?        @relation(fields: [batchId], references: [id])
   callerId       String?
-  caller         Caller?       @relation(fields: [callerId], references: [id])
+  caller         User?         @relation(fields: [callerId], references: [id])
   assignedAt     DateTime?
 }
