@@ -40,6 +40,7 @@ export default function ClientOnly({
   activeSession: initialActiveSession,
   caller: initialCaller,
 }: Props) {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [caller, setCaller] = useState<User>(initialCaller);
   const [pendingSessions, setPendingSessions] = useState(
     initialPendingSessions
@@ -214,7 +215,7 @@ export default function ClientOnly({
         <h1 className="text-2xl font-bold mb-4">Caller Dashboard</h1>
         <div className="flex items-center space-x-4 flex-wrap gap-2">
           <div>
-            <p className="text-sm text-gray-500">
+            {/* <p className="text-sm text-gray-500">
               Your Balance:{" "}
               <span className="font-medium text-gray-800">
                 {caller.balance.toLocaleString("en-US", {
@@ -222,7 +223,7 @@ export default function ClientOnly({
                   currency: "USD",
                 })}
               </span>
-            </p>
+            </p> */}
           </div>
           <Button
             variant="outline"
