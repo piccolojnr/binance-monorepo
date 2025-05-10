@@ -27,7 +27,7 @@ jobs:
       run: |
         ssh -o StrictHostKeyChecking=no ${{ secrets.DO_USER }}@${{ secrets.DO_HOST }} << 'EOF'
           set -e  # Exit on error
-          cd /var/www/my-app
+          cd /var/www/app
           git pull origin master
           npm install
           npm run build
