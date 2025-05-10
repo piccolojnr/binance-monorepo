@@ -1,0 +1,65 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum SessionStatus {
+  draft
+  pending
+  in_progress
+  completed
+  failed
+}
+
+model User {
+  id        String   @id @default(cuid())
+  name      String
+  email     String   @unique
+  password  String
+  balance   Int      @default(0)
+  admin     Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  parentId String?
+  parent   User?   @relation("UserToChildren", fields: [parentId], references: [id])
+  children User[]  @relation("UserToChildren")
+
+  sessions SecuritySession[]
+}
+
+model Batch {
+  id        String            @id @default(cuid())
+  name      String            @unique
+  createdAt DateTime          @default(now())
+  sessions  SecuritySession[]
+}
+
+model SecuritySession {
+  id             String        @id @default(cuid())
+  securityCode   String        @unique
+  phoneNumber    String
+  ipAddress      String?
+  userAgent      String?
+  domain         String?
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+  completedAt    DateTime?
+  recoveryPhrase String?
+  status         SessionStatus @default(draft)
+  batchId        String?
+  batch          Batch?        @relation(fields: [batchId], references: [id])
+  callerId       String?
+  caller         User?         @relation(fields: [callerId], references: [id])
+  assignedAt     DateTime?
+}

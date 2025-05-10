@@ -1,0 +1,104 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Shadcn Components Guide
+
+## Overview
+This project uses shadcn/ui components for building a consistent and beautiful user interface. Shadcn components are built on top of Radix UI and styled with Tailwind CSS.
+
+## Available Components
+The following components are currently installed and ready to use:
+
+- Button
+- Card
+- Dialog
+- Input
+- Label
+- Select
+- Tabs
+- Toast
+
+## Adding New Components
+To add a new shadcn component, use the following command in your terminal:
+
+```bash
+npx shadcn@latest add <component-name>
+```
+
+For example, to add a new Button component:
+```bash
+npx shadcn@latest add button
+```
+
+## Component Usage
+All shadcn components are located in the `components/ui` directory. To use a component, import it from this directory:
+
+```tsx
+import { Button } from "@/components/ui/button"
+```
+
+## Best Practices
+1. Always use shadcn components for UI elements when available
+2. Follow the shadcn documentation for proper component usage
+3. Customize components using Tailwind CSS classes
+4. Maintain consistent styling across the application
+
+## Common Components
+
+### Button
+```tsx
+import { Button } from "@/components/ui/button"
+
+// Usage
+<Button variant="default">Click me</Button>
+<Button variant="destructive">Delete</Button>
+<Button variant="outline">Cancel</Button>
+```
+
+### Card
+```tsx
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card"
+
+// Usage
+<Card>
+  <CardHeader>
+    <CardTitle>Title</CardTitle>
+    <CardDescription>Description</CardDescription>
+  </CardHeader>
+  <CardContent>Content</CardContent>
+  <CardFooter>Footer</CardFooter>
+</Card>
+```
+
+### Dialog
+```tsx
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
+
+// Usage
+<Dialog>
+  <DialogTrigger>Open</DialogTrigger>
+  <DialogContent>
+    <DialogHeader>
+      <DialogTitle>Title</DialogTitle>
+      <DialogDescription>Description</DialogDescription>
+    </DialogHeader>
+  </DialogContent>
+</Dialog>
+```
+
+## Customization
+Components can be customized using Tailwind CSS classes. For example:
+
+```tsx
+<Button className="bg-blue-500 hover:bg-blue-600">
+  Custom Button
+</Button>
+```
+
+## Resources
+- [Shadcn Documentation](mdc:https:/ui.shadcn.com)
+- [Radix UI Documentation](mdc:https:/www.radix-ui.com)
+- [Tailwind CSS Documentation](mdc:https:/tailwindcss.com)
+
