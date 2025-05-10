@@ -25,7 +25,7 @@ import { DialogDescription, DialogHeader, DialogTitle } from "../ui/dialog";
 
 export function Header({ session }: { session: Session | null }) {
   const pathname = usePathname();
-  const isAdmin = (session?.user as any).admin ? true : false;
+  const isAdmin = (session?.user as any)?.admin ? true : false;
   const isActive = (path: string) => pathname === path;
   const [open, setOpen] = useState(false);
 

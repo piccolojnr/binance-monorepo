@@ -33,7 +33,7 @@ export default function SignIn() {
       }
 
       const session = await getSession();
-      if ((session?.user as any).admin) {
+      if ((session?.user as any)?.admin) {
         router.push("/admin");
       } else {
         router.push("/caller");

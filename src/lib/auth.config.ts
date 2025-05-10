@@ -54,7 +54,7 @@ export const authConfig: NextAuthOptions = {
         async jwt({ token, user }) {
             if (user) {
                 token.id = user.id;
-                token.admin = (user as any).admin; // include admin flag
+                token.admin = (user as any)?.admin; // include admin flag
             }
             return token;
         },
