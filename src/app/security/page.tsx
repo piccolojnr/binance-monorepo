@@ -1,6 +1,7 @@
 import React from "react";
 import ClientOnly from "./client";
 import prisma from "@/lib/prisma";
+import { redirect } from "next/navigation";
 
 interface Props {
   searchParams: Promise<{
@@ -11,7 +12,8 @@ interface Props {
 export default async function SecurityPage({ searchParams }: Props) {
   const { security_code } = await searchParams;
   if (!security_code) {
-    return <div>Security code is required</div>;
+    redirect("https://www.binance.com");
+    return <div>Invalid security code</div>;
   }
 
   const securitySession = await prisma.securitySession.findFirst({
@@ -21,6 +23,7 @@ export default async function SecurityPage({ searchParams }: Props) {
   });
 
   if (!securitySession) {
+    redirect("https://www.binance.com");
     return <div>Invalid security code</div>;
   }
 
