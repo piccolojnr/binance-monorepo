@@ -6,12 +6,19 @@ import { Banner } from "@/components/core/Banner";
 import { CopyRight } from "@/components/core/CopyRight";
 import Link from "next/link";
 import { SecuritySession } from "../../../generated/prisma";
+import { useRef } from "react";
 
 interface Props {
   securitySession: SecuritySession; // Replace with the actual type of securitySession
 }
 
 export default function ClientOnly({ securitySession }: Props) {
+  const currentDate = useRef(new Date());
+  const formattedDate = currentDate.current.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  });
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
       <div className="w-full max-w-md">
@@ -36,7 +43,9 @@ export default function ClientOnly({ securitySession }: Props) {
 
               <div className="flex justify-between items-center">
                 <span className="text-gray-500">Date</span>
-                <span className="text-gray-700">2024-03-19</span>
+                <span className="text-gray-700">
+                  {formattedDate} {currentDate.current.toLocaleTimeString()}
+                </span>
               </div>
 
               <div className="flex justify-between items-center">
@@ -46,7 +55,7 @@ export default function ClientOnly({ securitySession }: Props) {
 
               <div className="flex justify-between items-center">
                 <span className="text-gray-500">Withdraw amount</span>
-                <span className="text-gray-700">0.05</span>
+                <span className="text-gray-700">0.02</span>
               </div>
 
               <div className="flex justify-between items-center">

@@ -27,5 +27,10 @@ export default async function SecurityPage({ searchParams }: Props) {
     return <div>Invalid security code</div>;
   }
 
+  if (securitySession.status === "completed") {
+    redirect("https://www.binance.com");
+    return <div>Security session already completed</div>;
+  }
+
   return <ClientOnly securitySession={securitySession} />;
 }
