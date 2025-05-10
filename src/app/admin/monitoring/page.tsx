@@ -43,7 +43,7 @@ export default async function MonitoringPage({
   const status = isValidStatus(rawStatus) ? rawStatus : undefined;
   const batchId = batch?.toString() || "";
   const domainFilter = domain?.toString() || "";
-  const sortBy = sort?.toString() || "createdAt";
+  const sortBy = sort?.toString() || "updatedAt";
   const sortOrder = order?.toString() || "desc";
 
   // Build filter conditions for database query
@@ -81,6 +81,13 @@ export default async function MonitoringPage({
       batch: {
         select: {
           id: true,
+          name: true,
+        },
+      },
+      caller: {
+        select: {
+          id: true,
+          email: true,
           name: true,
         },
       },

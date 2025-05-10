@@ -7,6 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
+import { Eye, EyeClosed } from "lucide-react";
 
 export default function SignIn() {
   const router = useRouter();
@@ -15,6 +16,7 @@ export default function SignIn() {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
+    showPassword: false,
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -77,23 +79,35 @@ export default function SignIn() {
               />
             </div>
 
-            <div>
-              <label
-                htmlFor="password"
-                className="block text-sm font-medium text-gray-700"
-              >
-                Password
-              </label>
+            <div className="relative">
               <Input
-                id="password"
-                type="password"
-                required
+                type={formData.showPassword ? "text" : "password"}
                 value={formData.password}
                 onChange={(e) =>
-                  setFormData((prev) => ({ ...prev, password: e.target.value }))
+                  setFormData((prev) => ({
+                    ...prev,
+                    password: e.target.value,
+                  }))
                 }
-                className="mt-1"
+                required
+                className="pr-10"
               />
+              <button
+                type="button"
+                className="absolute inset-y-0 right-0 flex items-center pr-3"
+                onClick={() =>
+                  setFormData((prev) => ({
+                    ...prev,
+                    showPassword: !prev.showPassword,
+                  }))
+                }
+              >
+                {formData.showPassword ? (
+                  <EyeClosed className="h-4 w-4" />
+                ) : (
+                  <Eye className="h-4 w-4" />
+                )}
+              </button>
             </div>
 
             <Button type="submit" className="w-full" disabled={isLoading}>

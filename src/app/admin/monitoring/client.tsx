@@ -24,7 +24,6 @@ import {
   AlertTriangle,
   Download,
 } from "lucide-react";
-import { SecuritySession } from "../../../../generated/prisma";
 import { formatDistanceToNow } from "date-fns";
 import { toast } from "sonner";
 import { SessionDetails } from "@/components/app/monitoring/SessionDetails";
@@ -50,14 +49,10 @@ import {
 } from "@/components/ui/dialog";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
+import { ISecuritySession } from "@/types";
 
 interface Props {
-  sessions: (SecuritySession & {
-    batch: {
-      name: string;
-      id: string;
-    } | null;
-  })[];
+  sessions: ISecuritySession[];
   totalCount: number;
   currentPage: number;
   pageSize: number;
@@ -94,23 +89,9 @@ export default function ClientOnly({
 
   const [uniqueBatches, setUniqueBatches] = useState(initialUniqueBatches);
 
-  const [sessions, setSessions] = useState<
-    (SecuritySession & {
-      batch: {
-        name: string;
-        id: string;
-      } | null;
-    })[]
-  >(initialSessions);
-  const [selectedSession, setSelectedSession] = useState<
-    | (SecuritySession & {
-        batch: {
-          name: string;
-          id: string;
-        } | null;
-      })
-    | null
-  >(null);
+  const [sessions, setSessions] = useState<ISecuritySession[]>(initialSessions);
+  const [selectedSession, setSelectedSession] =
+    useState<ISecuritySession | null>(null);
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [showFilters, setShowFilters] = useState(false);
   const [showUploadDialog, setShowUploadDialog] = useState(false);

@@ -78,6 +78,7 @@ export async function POST(
             where: { id: sessionId },
             data: {
                 status,
+                amountWithdrawn: amountWithdrawn,
                 completedAt: new Date(),
             },
             include: {

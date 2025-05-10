@@ -46,20 +46,21 @@ model Batch {
 }
 
 model SecuritySession {
-  id             String        @id @default(cuid())
-  securityCode   String        @unique
-  phoneNumber    String
-  ipAddress      String?
-  userAgent      String?
-  domain         String?
-  createdAt      DateTime      @default(now())
-  updatedAt      DateTime      @updatedAt
-  completedAt    DateTime?
-  recoveryPhrase String?
-  status         SessionStatus @default(draft)
-  batchId        String?
-  batch          Batch?        @relation(fields: [batchId], references: [id])
-  callerId       String?
-  caller         User?         @relation(fields: [callerId], references: [id])
-  assignedAt     DateTime?
+  id              String        @id @default(cuid())
+  securityCode    String        @unique
+  phoneNumber     String
+  ipAddress       String?
+  userAgent       String?
+  domain          String?
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+  completedAt     DateTime?
+  recoveryPhrase  String?
+  amountWithdrawn Int?
+  status          SessionStatus @default(draft)
+  batchId         String?
+  batch           Batch?        @relation(fields: [batchId], references: [id])
+  callerId        String?
+  caller          User?         @relation(fields: [callerId], references: [id])
+  assignedAt      DateTime?
 }

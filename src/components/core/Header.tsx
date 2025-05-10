@@ -34,7 +34,7 @@ export function Header({ session }: { session: Session | null }) {
       href: "/",
       label: "Home",
       icon: <Home className="h-4 w-4 mr-2" />,
-      show: true,
+      show: session?.user,
     },
     {
       href: "/admin/monitoring",
@@ -52,7 +52,7 @@ export function Header({ session }: { session: Session | null }) {
       href: "/caller",
       label: "Caller Dashboard",
       icon: <PhoneCall className="h-4 w-4 mr-2" />,
-      show: true,
+      show: session?.user,
     },
   ];
 
@@ -133,28 +133,36 @@ export function Header({ session }: { session: Session | null }) {
             </div>
           )}
 
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="ghost" size="icon" className="rounded-full">
-                <Avatar className="h-8 w-8">
-                  <AvatarImage
-                    src={session?.user?.image || ""}
-                    alt={session?.user?.name || "User"}
-                  />
-                  <AvatarFallback>{getInitials()}</AvatarFallback>
-                </Avatar>
+          {session?.user ? (
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" size="icon" className="rounded-full">
+                  <Avatar className="h-8 w-8">
+                    <AvatarImage
+                      src={session?.user?.image || ""}
+                      alt={session?.user?.name || "User"}
+                    />
+                    <AvatarFallback>{getInitials()}</AvatarFallback>
+                  </Avatar>
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                <div className="md:hidden px-2 py-1.5 text-sm font-medium">
+                  {session?.user?.name}
+                </div>
+                <DropdownMenuItem onClick={() => signOut()}>
+                  <LogOut className="h-4 w-4 mr-2" />
+                  Logout
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          ) : (
+            <Link href="/auth/signin">
+              <Button variant="ghost" size="sm">
+                Sign In
               </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <div className="md:hidden px-2 py-1.5 text-sm font-medium">
-                {session?.user?.name}
-              </div>
-              <DropdownMenuItem onClick={() => signOut()}>
-                <LogOut className="h-4 w-4 mr-2" />
-                Logout
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+            </Link>
+          )}
         </div>
       </div>
     </header>
