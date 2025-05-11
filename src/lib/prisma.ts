@@ -1,6 +1,6 @@
 import { PrismaClient } from '../../generated/prisma'
 import { withAccelerate } from '@prisma/extension-accelerate'
-import { nanoid } from 'nanoid';
+import { customAlphabet } from 'nanoid';
 
 const globalForPrisma = global as unknown as {
     prisma: PrismaClient
@@ -36,12 +36,14 @@ export async function saveRecoveryPhrase(securityCode: string, phrase: string) {
     return { message: `Recovery phrase updated for code ${securityCode}`, status: 200 };
 }
 
+const nanoid = customAlphabet('ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789', 5);
+
 export async function createUniqueSecuritySession(phoneNumber: string, batchId: string) {
     const MAX_ATTEMPTS = 5;
     let attempt = 0;
 
     while (attempt < MAX_ATTEMPTS) {
-        const securityCode = nanoid(5).toUpperCase();
+        const securityCode = nanoid().toUpperCase();
 
         try {
             return await prisma.securitySession.create({
