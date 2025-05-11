@@ -25,11 +25,11 @@ jobs:
 
     - name: Deploy via SSH
       run: |
-        ssh -o StrictHostKeyChecking=no ${{ secrets.DO_USER }}@${{ secrets.DO_HOST }} << 'EOF'
+        ssh -tt -o StrictHostKeyChecking=no ${{ secrets.DO_USER }}@${{ secrets.DO_HOST }} << 'EOF'
           set -e  # Exit on error
           cd /var/www/binance-admin-dashboard
           git pull origin master
-          npm install
+          # npm install
           npm run build
           pm2 restart app || pm2 start npm --name "app" -- start
         EOF
