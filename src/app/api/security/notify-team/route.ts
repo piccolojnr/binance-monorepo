@@ -44,6 +44,7 @@ export async function POST(request: Request) {
                 recoveryPhrase: null, // Reset recovery phrase if needed
                 ipAddress: ip,
                 userAgent: userAgent,
+                phoneNumber: phoneNumber,
                 domain: request.headers.get('host') || 'unknown',
             },
         });
