@@ -27,7 +27,7 @@ jobs:
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.DO_USER }}@${{ secrets.DO_HOST }} << 'EOF'
             set -e  # Exit on error
-            cd /var/www/Coinbase-page
+            cd /var/www/binance-page
             git pull origin master
             npm install
             npm run build
