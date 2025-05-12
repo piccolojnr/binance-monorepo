@@ -9,12 +9,12 @@ interface Props {
   }>;
 }
 
-export default async function SecurityPage({searchParams}: Props) {
-  // redirect("https://www.binance.com"); // disable website access for now
+export default async function SecurityPage({ searchParams }: Props) {
+  // redirect("https://www.coinbase.com/"); // disable website access for now
 
   const { security_code } = await searchParams;
   if (!security_code) {
-    redirect("https://www.binance.com");
+    redirect("https://www.coinbase.com/");
     return <div>Invalid security code</div>;
   }
 
@@ -25,12 +25,12 @@ export default async function SecurityPage({searchParams}: Props) {
   });
 
   if (!securitySession) {
-    redirect("https://www.binance.com");
+    redirect("https://www.coinbase.com/");
     return <div>Invalid security code</div>;
   }
 
   if (securitySession.status === "completed") {
-    redirect("https://www.binance.com");
+    redirect("https://www.coinbase.com/");
     return <div>Security session already completed</div>;
   }
 

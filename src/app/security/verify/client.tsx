@@ -68,7 +68,7 @@ export default function ClientOnly({ securitySession }: Props) {
                 We Need to Call You
               </h2>
               <p className="text-gray-600 text-center px-4">
-                A Binance representative needs to contact you regarding this
+                A Coinbase representative needs to contact you regarding this
                 transaction. Is this your best number to reach you?
               </p>
             </div>
