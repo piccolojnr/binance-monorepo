@@ -14,14 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Coinbase - Buy and Sell Bitcoin, Ethereum, and more with trust",
-  description:
-    "Coinbase is a secure platform that makes it easy to buy, sell, and store cryptocurrency like Bitcoin, Ethereum, and more.",
-  icons: {
-    icon: "/icon.png",
-    shortcut: "/icon.png",
-    apple: "/icon.png",
-  },
+  title: "Binance Security",
 };
 
 export default function RootLayout({
@@ -37,13 +30,13 @@ export default function RootLayout({
         {/* header bar with on logo */}
         <header className="bg-white px-4 border-b">
           <div className="max-w-7xl mx-auto">
-            <div className=" font-bold text-xl flex items-center">
+            <div className="text-yellow-500 font-bold text-xl flex items-center">
               <Image
-                src="/coinbase-logo.svg"
-                alt="Coinbase Logo"
+                src="/binance-logo.png"
+                alt="Binance Logo"
                 width={150}
                 height={50}
-                className=" my-6"
+                className="mr-2"
               />
             </div>
           </div>
