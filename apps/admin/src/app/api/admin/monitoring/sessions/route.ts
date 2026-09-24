@@ -26,13 +26,15 @@ export async function DELETE(request: Request) {
             return NextResponse.json({ error: 'Session ID is required' }, { status: 400 });
         }
 
-        // Delete all sessions in the batch
-        await prisma.securitySession.delete({
+        const session = await prisma.securitySession.findUnique({
             where: { id: sessionId }
         });
 
-        // Delete the batch
-        await prisma.batch.delete({
+        if (!session) {
+            return NextResponse.json({ error: 'Session not found' }, { status: 404 });
+        }
+
+        await prisma.securitySession.delete({
             where: { id: sessionId }
         });
 
