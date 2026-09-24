@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation";
+import { getPlatform } from "@/lib/platform";
 
 export default function Notfound() {
-  redirect("https://www.binance.com");
+  redirect(getPlatform().redirectUrl);
   return <div>Redirecting...</div>;
 }
