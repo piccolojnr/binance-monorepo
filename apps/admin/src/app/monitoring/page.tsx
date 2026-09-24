@@ -17,7 +17,7 @@ export default async function MonitoringPage({
   const session = await getServerSession(authConfig);
 
   if (!session?.user?.email) {
-    return redirect("/auth/signin?callbackUrl=/admin/monitoring");
+    return redirect("/auth/signin?callbackUrl=/monitoring");
   }
   // Check if the user is an admin
   const user = await prisma.user.findUnique({

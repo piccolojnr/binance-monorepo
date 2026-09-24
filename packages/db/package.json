@@ -17,13 +17,14 @@
     "prisma:deploy": "prisma migrate deploy",
     "prisma:push": "prisma db push",
     "prisma:studio": "prisma studio",
-    "prisma:seed": "bun prisma/seed.ts"
+    "prisma:seed": "tsx prisma/seed.ts"
   },
   "dependencies": {
     "@prisma/client": "^6.7.0"
   },
   "devDependencies": {
     "bcryptjs": "^3.0.2",
-    "prisma": "^6.7.0"
+    "prisma": "^6.7.0",
+    "tsx": "^4.23.15"
   }
 }

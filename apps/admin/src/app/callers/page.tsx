@@ -8,7 +8,7 @@ export default async function CallersPage() {
   const session = await getServerSession(authConfig);
 
   if (!session?.user?.email) {
-    redirect("/auth/signin?callbackUrl=/admin/callers");
+    redirect("/auth/signin?callbackUrl=/callers");
   }
 
   const admin = await prisma.user.findUnique({
@@ -16,7 +16,7 @@ export default async function CallersPage() {
   });
 
   if (!admin || !admin.admin) {
-    redirect("/auth/signin?callbackUrl=/admin/callers");
+    redirect("/auth/signin?callbackUrl=/callers");
   }
 
   const callers = await prisma.user.findMany({

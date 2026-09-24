@@ -30,8 +30,8 @@ export default async function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {/* header bar with on logo */}
-        <Header session={session} />
+        {/* header bar with on logo — only shown when logged in */}
+        {session?.user && <Header session={session} />}
         {children}
         <Toaster />
       </body>

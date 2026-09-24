@@ -21,9 +21,10 @@ Next.js 15 admin dashboard for managing users, callers, and security sessions.
 
 ## Routes
 
-- `/admin` - Dashboard with stats overview
-- `/admin/callers` - Manage caller accounts
-- `/admin/monitoring` - View and manage security sessions
+- `/` - Dashboard with stats overview
+- `/callers` - Manage caller accounts
+- `/monitoring` - View and manage security sessions
+- `/caller` - Caller dashboard (non-admin users)
 
 ## Default Admin
 

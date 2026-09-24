@@ -10,7 +10,7 @@ const secret = process.env.NEXTAUTH_SECRET;
 export async function middleware(req: NextRequest) {
     const token = await getToken({ req, secret });
 
-    const isAdminRoute = req.nextUrl.pathname.startsWith("/admin") || req.nextUrl.pathname.startsWith("/auth/register");
+    const isAdminRoute = req.nextUrl.pathname.startsWith("/callers") || req.nextUrl.pathname.startsWith("/monitoring") || req.nextUrl.pathname.startsWith("/auth/register");
 
     // If not logged in at all, redirect to sign-in
     if (!token) {
@@ -28,8 +28,10 @@ export async function middleware(req: NextRequest) {
 
 export const config = {
     matcher: [
+        "/",
         "/caller/:path*",
-        "/admin/:path*",
+        "/callers/:path*",
+        "/monitoring/:path*",
         "/auth/register/:path*",
     ],
 

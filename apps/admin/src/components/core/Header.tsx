@@ -32,18 +32,18 @@ export function Header({ session }: { session: Session | null }) {
   const navItems = [
     {
       href: "/",
-      label: "Home",
+      label: "Dashboard",
       icon: <Home className="h-4 w-4 mr-2" />,
       show: session?.user,
     },
     {
-      href: "/admin/monitoring",
+      href: "/monitoring",
       label: "Monitor Sessions",
       icon: <LayoutDashboard className="h-4 w-4 mr-2" />,
       show: isAdmin,
     },
     {
-      href: "/admin/callers",
+      href: "/callers",
       label: "Manage Callers",
       icon: <Users className="h-4 w-4 mr-2" />,
       show: isAdmin,
