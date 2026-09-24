@@ -1,0 +1,15 @@
+{
+  "name": "binance-monorepo",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "bun@1.4.2",
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "dev:admin": "bun --filter admin dev",
+    "dev:page": "bun --filter page dev",
+    "build:admin": "bun --filter admin build",
+    "build:page": "bun --filter page build"
+  }
+}
