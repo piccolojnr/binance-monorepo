@@ -21,7 +21,7 @@ import {
 } from "@/components/ui/dialog";
 import { toast } from "sonner";
 import { Pencil, Trash2, Plus, Eye, EyeClosed } from "lucide-react";
-import { User } from "../../../../generated/prisma";
+import { User } from "@binance/db";
 
 interface Props {
   initialCallers: User[];

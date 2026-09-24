@@ -1,4 +1,4 @@
-import { SecuritySession } from "../../generated/prisma";
+import { SecuritySession } from "@binance/db";
 
 export type ISecuritySession = (SecuritySession & {
     batch: {

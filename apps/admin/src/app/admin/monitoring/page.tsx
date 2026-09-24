@@ -4,7 +4,7 @@ export const fetchCache = "force-no-store";
 import React from "react";
 import ClientOnly from "./client";
 import prisma from "@/lib/prisma";
-import { $Enums, Prisma } from "../../../../generated/prisma";
+import { $Enums, Prisma } from "@binance/db";
 import { authConfig } from "@/lib/auth.config";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";

@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
-import { User, SecuritySession } from "../../../generated/prisma";
+import { User, SecuritySession } from "@binance/db";
 import { formatDistanceToNow } from "date-fns";
 import { Phone, Check, RefreshCw, X, Loader2 } from "lucide-react";
 

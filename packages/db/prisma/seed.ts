@@ -1,5 +1,5 @@
 import { PrismaClient, } from '../generated/prisma';
-import { hashPassword } from '@/lib/auth-utils';
+import { hash } from 'bcryptjs';
 
 const prisma = new PrismaClient();
 
@@ -32,7 +32,7 @@ async function main() {
         data: {
             name: 'Admin',
             email: 'admin@admin.com',
-            password: await hashPassword('admin'),
+            password: await hash('admin', 12),
             admin: true,
         },
     });
@@ -42,7 +42,7 @@ async function main() {
     //     data: {
     //         name: 'Caller',
     //         email: 'caller@caller.com',
-    //         password: await hashPassword('caller'),
+    //         password: await hash('caller', 12),
     //         admin: false,
     //         parentId: admin.id,
     //     },

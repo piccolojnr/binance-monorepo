@@ -4,12 +4,20 @@
   "private": true,
   "packageManager": "bun@1.4.2",
   "workspaces": [
-    "apps/*"
+    "apps/*",
+    "packages/*"
   ],
   "scripts": {
+    "postinstall": "bun --filter @binance/db build",
     "dev:admin": "bun --filter admin dev",
     "dev:page": "bun --filter page dev",
-    "build:admin": "bun --filter admin build",
-    "build:page": "bun --filter page build"
+    "build:admin": "bun --filter @binance/db build && bun --filter admin build",
+    "build:page": "bun --filter @binance/db build && bun --filter page build",
+    "db:generate": "bun --filter @binance/db prisma:generate",
+    "db:migrate": "bun --filter @binance/db prisma:migrate",
+    "db:deploy": "bun --filter @binance/db prisma:deploy",
+    "db:push": "bun --filter @binance/db prisma:push",
+    "db:studio": "bun --filter @binance/db prisma:studio",
+    "db:seed": "bun --filter @binance/db prisma:seed"
   }
 }

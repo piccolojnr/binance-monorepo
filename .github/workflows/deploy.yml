@@ -1,0 +1,22 @@
+name: Deploy
+
+# Placeholder — deployment is not wired up yet.
+#
+# Images are published to GitHub Container Registry by the "Publish Docker
+# images" workflow on every push to master:
+#
+#   ghcr.io/<owner>/binance-admin:latest
+#   ghcr.io/<owner>/binance-page:latest
+#
+# When we are ready to deploy, this workflow should pull those images onto
+# the VPS (both apps run on the same VPS for now, on different host ports).
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Not configured yet
+        run: echo "Deployment pipeline not configured yet — images are published to GHCR by the publish workflow."

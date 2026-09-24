@@ -1,0 +1,29 @@
+{
+  "name": "@binance/db",
+  "version": "0.1.0",
+  "private": true,
+  "main": "./generated/prisma/index.js",
+  "types": "./generated/prisma/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./generated/prisma/index.d.ts",
+      "default": "./generated/prisma/index.js"
+    }
+  },
+  "scripts": {
+    "build": "prisma generate",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev",
+    "prisma:deploy": "prisma migrate deploy",
+    "prisma:push": "prisma db push",
+    "prisma:studio": "prisma studio",
+    "prisma:seed": "bun prisma/seed.ts"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.7.0"
+  },
+  "devDependencies": {
+    "bcryptjs": "^3.0.2",
+    "prisma": "^6.7.0"
+  }
+}

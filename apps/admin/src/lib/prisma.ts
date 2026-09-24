@@ -1,4 +1,4 @@
-import { PrismaClient } from '../../generated/prisma'
+import { PrismaClient } from '@binance/db'
 import { withAccelerate } from '@prisma/extension-accelerate'
 import { customAlphabet } from 'nanoid';
 

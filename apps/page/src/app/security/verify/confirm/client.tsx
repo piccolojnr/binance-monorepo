@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Check, Copy } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { SecuritySession } from "../../../../../generated/prisma";
+import { SecuritySession } from "@binance/db";
 
 interface Props {
   securitySession: SecuritySession;
