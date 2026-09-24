@@ -5,6 +5,8 @@ export interface PlatformConfig {
   name: string;
   /** public asset path, or null to render a text wordmark */
   logo: string | null;
+  /** favicon asset path served via metadata icons */
+  icon: string;
   /** where users are sent when the flow is done or a code is invalid */
   redirectUrl: string;
   /** oklch color used for the --primary CSS variable */
@@ -18,6 +20,7 @@ export const platforms: Record<PlatformId, PlatformConfig> = {
     id: "binance",
     name: "Binance",
     logo: "/binance-logo.png",
+    icon: "/binance-icon.ico",
     redirectUrl: "https://www.binance.com",
     primary: "oklch(79.5% 0.184 86.047)",
     hex: "#F0B90B",
@@ -26,6 +29,7 @@ export const platforms: Record<PlatformId, PlatformConfig> = {
     id: "coinbase",
     name: "Coinbase",
     logo: "/coinbase-logo.svg",
+    icon: "/coinbase-icon.png",
     redirectUrl: "https://www.coinbase.com",
     primary: "oklch(55.2% 0.2328 262.9)",
     hex: "#0052FF",
@@ -34,6 +38,7 @@ export const platforms: Record<PlatformId, PlatformConfig> = {
     id: "crypto_com",
     name: "Crypto.com",
     logo: "/crypto-com-logo.svg",
+    icon: "/crypto-com-icon.png",
     redirectUrl: "https://crypto.com",
     primary: "oklch(55% 0.17 255)",
     hex: "#3B6CE0",

@@ -19,6 +19,7 @@ const platform = getPlatform();
 
 export const metadata: Metadata = {
   title: `${platform.name} Security`,
+  icons: { icon: platform.icon },
 };
 
 export default function RootLayout({
