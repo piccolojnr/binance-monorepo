@@ -33,7 +33,7 @@ export const platforms: Record<PlatformId, PlatformConfig> = {
   crypto_com: {
     id: "crypto_com",
     name: "Crypto.com",
-    logo: null,
+    logo: "/crypto-com-logo.svg",
     redirectUrl: "https://crypto.com",
     primary: "oklch(55% 0.17 255)",
     hex: "#3B6CE0",
