@@ -53,7 +53,7 @@ export default function ClientOnly({ securitySession }: Props) {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-background flex items-center justify-center p-4">
       <div className="w-full max-w-md">
         <Banner
           securityCode={securitySession.securityCode} // Assuming securitySession has a securityCode property
@@ -62,13 +62,13 @@ export default function ClientOnly({ securitySession }: Props) {
         <Card className="shadow-lg py-0">
           <CardContent className="py-6">
             <div className="text-center mb-6">
-              <div className="mx-auto mb-4 bg-pink-100 rounded-full p-4 w-16 h-16 flex items-center justify-center">
+              <div className="mx-auto mb-4 bg-primary/10 rounded-full p-4 w-16 h-16 flex items-center justify-center">
                 <Phone className="h-8 w-8 text-primary" />
               </div>
               <h2 className="text-xl font-semibold mb-2">
                 We Need to Call You
               </h2>
-              <p className="text-gray-600 text-center px-4">
+              <p className="text-muted-foreground text-center px-4">
                 A {getPlatform().name} representative needs to contact you
                 regarding this transaction. Is this your best number to reach
                 you?
@@ -77,7 +77,7 @@ export default function ClientOnly({ securitySession }: Props) {
 
             <div className="mb-6">
               <div className="flex justify-between items-center mb-2">
-                <span className="text-gray-500 text-sm">
+                <span className="text-muted-foreground text-sm">
                   Verify Your Contact Information
                 </span>
                 <Button
@@ -101,10 +101,10 @@ export default function ClientOnly({ securitySession }: Props) {
                   type="text"
                   value={phoneNumber}
                   onChange={(e) => setPhoneNumber(e.target.value)}
-                  className="p-3 bg-gray-50 rounded-md text-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary"
+                  className="p-3 bg-muted/40 rounded-md text-lg border-border focus:outline-none focus:ring-2 focus:ring-primary"
                 />
               ) : (
-                <div className="p-3 bg-gray-50 rounded-md text-lg">
+                <div className="p-3 bg-muted/40 rounded-md text-lg">
                   {phoneNumber}
                 </div>
               )}

@@ -13,7 +13,7 @@ export function Banner({ securityCode }: { securityCode: string }) {
           </div>
           <div className="text-right">
             <p className="text-sm">Welcome back</p>
-            <p className="text-sm font-medium text-gray-500">
+            <p className="text-sm font-medium text-muted-foreground">
               Secure Session ID: {securityCode}
             </p>
           </div>

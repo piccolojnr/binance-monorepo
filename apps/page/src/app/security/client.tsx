@@ -20,7 +20,7 @@ export default function ClientOnly({ securitySession }: Props) {
     day: "2-digit",
   });
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-background flex items-center justify-center p-4">
       <div className="w-full max-w-md">
         <Banner
           securityCode={securitySession.securityCode} // Assuming securitySession has a securityCode property
@@ -28,42 +28,42 @@ export default function ClientOnly({ securitySession }: Props) {
 
         <Card className="shadow-lg py-0">
           <CardContent className="py-6">
-            <h3 className="text-lg font-medium mb-6 text-gray-700">
+            <h3 className="text-lg font-medium mb-6 text-foreground">
               Do you recognize this transaction?
             </h3>
 
             <div className="space-y-5">
               <div className="flex justify-between items-center">
-                <span className="text-gray-500">Status</span>
+                <span className="text-muted-foreground">Status</span>
                 <div className="flex items-center">
                   <Circle className="h-2.5 w-2.5 fill-primary/90 text-primary mr-2" />
-                  <span className="text-gray-700">Pending</span>
+                  <span className="text-foreground">Pending</span>
                 </div>
               </div>
 
               <div className="flex justify-between items-center">
-                <span className="text-gray-500">Date</span>
-                <span className="text-gray-700">{formattedDate}</span>
+                <span className="text-muted-foreground">Date</span>
+                <span className="text-foreground">{formattedDate}</span>
               </div>
 
               <div className="flex justify-between items-center">
-                <span className="text-gray-500">Coin</span>
-                <span className="text-gray-700">BTC</span>
+                <span className="text-muted-foreground">Coin</span>
+                <span className="text-foreground">BTC</span>
               </div>
 
               <div className="flex justify-between items-center">
-                <span className="text-gray-500">Withdraw amount</span>
-                <span className="text-gray-700">0.02</span>
+                <span className="text-muted-foreground">Withdraw amount</span>
+                <span className="text-foreground">0.02</span>
               </div>
 
               <div className="flex justify-between items-center">
-                <span className="text-gray-500">Network</span>
-                <span className="text-gray-700">Bitcoin</span>
+                <span className="text-muted-foreground">Network</span>
+                <span className="text-foreground">Bitcoin</span>
               </div>
 
               <div className="flex justify-between items-center">
-                <span className="text-gray-500">Address</span>
-                <div className="flex items-center flex-wrap justify-end text-gray-700">
+                <span className="text-muted-foreground">Address</span>
+                <div className="flex items-center flex-wrap justify-end text-foreground">
                   <span className="truncate max-w-[180px]">
                     1A1zP1eP5QGefi2DMPTf...
                   </span>
@@ -83,7 +83,7 @@ export default function ClientOnly({ securitySession }: Props) {
           <CardFooter className="flex p-0">
             <Button
               variant="ghost"
-              className="flex-1 h-14 rounded-none rounded-bl-lg border-t border-r text-primary hover:text-yellow-600 hover:bg-yellow-50"
+              className="flex-1 h-14 rounded-none rounded-bl-lg border-t border-r text-primary hover:text-primary/80 hover:bg-muted"
             >
               It was me
             </Button>

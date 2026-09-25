@@ -13,6 +13,8 @@ export interface PlatformConfig {
   primary: string;
   /** plain hex for inline styles */
   hex: string;
+  /** site-wide CSS variables (dark theme etc.) applied on <body> */
+  theme?: Record<string, string>;
 }
 
 export const platforms: Record<PlatformId, PlatformConfig> = {
@@ -40,8 +42,29 @@ export const platforms: Record<PlatformId, PlatformConfig> = {
     logo: "/crypto-com-logo.svg",
     icon: "/crypto-com-icon.png",
     redirectUrl: "https://crypto.com",
-    primary: "oklch(55% 0.17 255)",
-    hex: "#3B6CE0",
+    primary: "oklch(58% .233 277.117)",
+    hex: "#605DFF",
+    theme: {
+      "--background": "oklch(25.33% .016 252.42)",
+      "--foreground": "oklch(97.807% .029 256.847)",
+      "--card": "oklch(23.26% .014 253.1)",
+      "--card-foreground": "oklch(97.807% .029 256.847)",
+      "--popover": "oklch(23.26% .014 253.1)",
+      "--popover-foreground": "oklch(97.807% .029 256.847)",
+      "--primary": "oklch(58% .233 277.117)",
+      "--primary-foreground": "oklch(96% .018 272.314)",
+      "--secondary": "oklch(21.15% .012 254.09)",
+      "--secondary-foreground": "oklch(97.807% .029 256.847)",
+      "--muted": "oklch(21.15% .012 254.09)",
+      "--muted-foreground": "oklch(72% .02 256.847)",
+      "--accent": "oklch(21.15% .012 254.09)",
+      "--accent-foreground": "oklch(97.807% .029 256.847)",
+      "--destructive": "oklch(71% .194 13.428)",
+      "--destructive-foreground": "oklch(27% .105 12.094)",
+      "--border": "oklch(35% .018 253)",
+      "--input": "oklch(35% .018 253)",
+      "--ring": "oklch(58% .233 277.117)",
+    },
   },
 };
 

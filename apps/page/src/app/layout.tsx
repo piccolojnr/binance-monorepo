@@ -31,10 +31,15 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        style={{ "--primary": platform.primary } as React.CSSProperties}
+        style={
+          {
+            "--primary": platform.primary,
+            ...platform.theme,
+          } as React.CSSProperties
+        }
       >
         {/* header bar with platform logo */}
-        <header className="bg-white px-4 border-b">
+        <header className="bg-background px-4 border-b">
           <div className="max-w-7xl mx-auto">
             <div className="font-bold text-xl flex items-center h-16">
               {platform.logo ? (
