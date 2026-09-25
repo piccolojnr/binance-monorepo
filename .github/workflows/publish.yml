@@ -5,6 +5,19 @@ on:
     branches:
       - master
   workflow_dispatch:
+    inputs:
+      platform:
+        description: >-
+          Page app branding to bake in at build time (binance, coinbase or
+          crypto_com). When set, the page image is tagged with this value
+          instead of only latest/sha. Leave empty to build with the default.
+        type: choice
+        options:
+          - ''
+          - binance
+          - coinbase
+          - crypto_com
+        default: ''
 
 permissions:
   contents: read
@@ -41,6 +54,9 @@ jobs:
           tags: |
             type=raw,value=latest,enable={{is_default_branch}}
             type=sha,prefix=sha-
+            type=raw,value=${{ inputs.platform }},enable=${{ matrix.app == 'page' && inputs.platform != '' }}
+          flavor: |
+            latest=false
 
       - name: Build and push image
         uses: docker/build-push-action@v6
@@ -50,5 +66,7 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+          build-args: |
+            NEXT_PUBLIC_PLATFORM=${{ inputs.platform }}
           cache-from: type=gha,scope=${{ matrix.app }}
           cache-to: type=gha,mode=max,scope=${{ matrix.app }}

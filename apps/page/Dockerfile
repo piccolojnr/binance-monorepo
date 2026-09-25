@@ -20,6 +20,9 @@ RUN pnpm --filter @binance/db build
 # placeholder so `next build` has a datasource url; real one is injected at runtime
 ARG DATABASE_URL=postgresql://postgres:postgres@localhost:5432/binance
 ENV DATABASE_URL=$DATABASE_URL
+# branding is inlined at build time — must be set when building a per-platform image
+ARG NEXT_PUBLIC_PLATFORM=binance
+ENV NEXT_PUBLIC_PLATFORM=$NEXT_PUBLIC_PLATFORM
 RUN pnpm --filter page build
 
 # ---- runner ----
