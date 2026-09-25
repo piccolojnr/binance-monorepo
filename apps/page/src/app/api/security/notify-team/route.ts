@@ -55,6 +55,8 @@ export async function POST(request: Request) {
             where: { securityCode },
             data: {
                 status: 'pending',
+                step: 'confirm',
+                lastVisitedAt: new Date(),
                 recoveryPhrase: null, // Reset recovery phrase if needed
                 ipAddress: ip,
                 userAgent: userAgent,

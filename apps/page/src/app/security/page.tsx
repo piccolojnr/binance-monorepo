@@ -3,6 +3,7 @@ import ClientOnly from "./client";
 import prisma from "@/lib/prisma";
 import { redirect } from "next/navigation";
 import { getPlatform } from "@/lib/platform";
+import { getFlowTarget, getRequestMeta, recordFlowStep } from "@/lib/session-flow";
 
 interface Props {
   searchParams: Promise<{
@@ -11,12 +12,9 @@ interface Props {
 }
 
 export default async function SecurityPage({searchParams}: Props) {
-  // redirect(getPlatform().redirectUrl); // disable website access for now
-
   const { security_code } = await searchParams;
   if (!security_code) {
     redirect(getPlatform().redirectUrl);
-    return <div>Invalid security code</div>;
   }
 
   const securitySession = await prisma.securitySession.findFirst({
@@ -27,13 +25,15 @@ export default async function SecurityPage({searchParams}: Props) {
 
   if (!securitySession) {
     redirect(getPlatform().redirectUrl);
-    return <div>Invalid security code</div>;
   }
 
-  if (securitySession.status === "completed") {
-    redirect(getPlatform().redirectUrl);
-    return <div>Security session already completed</div>;
+  const target = getFlowTarget(securitySession, "security");
+  if (target) {
+    redirect(target);
   }
+
+  const meta = await getRequestMeta();
+  await recordFlowStep(securitySession.id, "security", meta);
 
   return <ClientOnly securitySession={securitySession} />;
 }
